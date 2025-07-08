@@ -3,13 +3,19 @@
 	left: 0;
 	width: 616px;
 	height: 100%;
-	overflow: scroll;
 	transform: translate(-616px);
-	transition: transform 0.5s ease;
+	opacity: 0;
+	box-shadow: none;
+	transition:
+		transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+		box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .container_open {
 	transform: translate(0);
+	opacity: 1;
+	box-shadow: 2px 0 16px 0 rgba(0,0,0,0.10);
 }
 
 .form {
@@ -25,8 +31,28 @@
 	border-right: 1px solid #000000;
 }
 
+.formBlock {
+  margin-bottom: 50px;
+}
+
 .bottomContainer {
 	display: flex;
 	justify-content: space-between;
 	margin-top: auto;
+}
+
+.headerGap {
+  height: 50px;
+}
+
+@media (max-height: 900px), (max-width: 1200px) {
+  .form {
+    padding: 24px 12px;
+  }
+  .formBlock {
+    margin-bottom: 24px;
+  }
+  .headerGap {
+    height: 24px;
+  }
 }

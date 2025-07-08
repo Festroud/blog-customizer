@@ -18,10 +18,11 @@ type SelectProps = {
 	onChange?: (selected: OptionType) => void;
 	onClose?: () => void;
 	title?: string;
+	unavailableValues?: string[];
 };
 
 export const Select = (props: SelectProps) => {
-	const { options, placeholder, selected, onChange, onClose, title } = props;
+	const { options, placeholder, selected, onChange, onClose, title, unavailableValues = [] } = props;
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const rootRef = useRef<HTMLDivElement>(null);
 	const placeholderRef = useRef<HTMLDivElement>(null);
@@ -40,6 +41,7 @@ export const Select = (props: SelectProps) => {
 	});
 
 	const handleOptionClick = (option: OptionType) => {
+		if (unavailableValues.includes(option.value)) return;
 		setIsOpen(false);
 		onChange?.(option);
 	};
@@ -61,7 +63,7 @@ export const Select = (props: SelectProps) => {
 				ref={rootRef}
 				data-is-active={isOpen}
 				data-testid='selectWrapper'>
-				<img src={arrowDown} alt='иконка стрелочки' className={styles.arrow} />
+				<img src={arrowDown} alt='иконка стрелочки' className={styles.arrow} onClick={handlePlaceHolderClick} />
 				<div
 					className={clsx(
 						styles.placeholder,
@@ -91,6 +93,7 @@ export const Select = (props: SelectProps) => {
 									key={option.value}
 									option={option}
 									onClick={() => handleOptionClick(option)}
+									unavailable={unavailableValues.includes(option.value)}
 								/>
 							))}
 					</ul>
