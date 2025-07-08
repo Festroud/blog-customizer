@@ -55,7 +55,6 @@ export const ArticleParamsForm = ({
 	const handleReset = (e: FormEvent) => {
 		e.preventDefault();
 		onReset();
-		setIsOpen(false);
 	};
 
 	// Клик вне сайдбара — закрыть (добавим обработчик на document, если открыт)
