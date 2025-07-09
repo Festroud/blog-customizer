@@ -29,10 +29,7 @@
 	padding: 50px 31px;
 	background-color: #ffffff;
 	border-right: 1px solid #000000;
-}
-
-.formBlock {
-  margin-bottom: 50px;
+	gap: 50px;
 }
 
 .bottomContainer {
@@ -48,9 +45,7 @@
 @media (max-height: 900px), (max-width: 1200px) {
   .form {
     padding: 24px 12px;
-  }
-  .formBlock {
-    margin-bottom: 24px;
+    gap: 24px;
   }
   .headerGap {
     height: 24px;
